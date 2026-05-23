@@ -1,24 +1,22 @@
-﻿namespace SchoolApp1
+﻿namespace SchoolApp1;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    private int _count = 0;
+
+    public MainPage()
     {
-        int count = 0;
+        InitializeComponent();
+    }
 
-        public MainPage()
-        {
-            InitializeComponent();
-        }
+    private void OnTapClicked(object sender, EventArgs e)
+    {
+        _count++;
+        StatusLabel.Text = $"Button tapped {_count} times";
+    }
 
-        private void OnCounterClicked(object? sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
+    private async void OnOpenStudentsClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(StudentsPage));
     }
 }
